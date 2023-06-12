@@ -1,8 +1,51 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Карта возраста домов Екатеринбурга</title>
-	</head>
-	<body>
-		<iframe width="100%" height="100%" frameborder="0" src="https://nikitamatrosoff.carto.com/builder/f824b18f-4315-449e-a026-15e2dbbfbd91/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-	</body>
+<head>
+  <title>Семантическая карта</title>
+  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+</head>
+<body>
+	<div id="map"></div>
+</body>
 </html>
+
+<script>
+	// define document width and height
+	var width = 1000, height = 1000
+
+	// create SVG document and set its size
+	var draw = SVG().addTo('#map').size(width, height)
+	draw.viewbox(0,0,width,height)
+	
+	cx = width / 2
+	cy = height / 2
+	d1 = 200
+	
+	var circle4 = draw.circle(d1*4).attr({'cx': cx, 'cy': cy, 'fill': '#ef949c'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
+	var circle3 = draw.circle(d1*3).attr({'cx': cx, 'cy': cy, 'fill': '#fe9e49'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
+	var circle2 = draw.circle(d1*2).attr({'cx': cx, 'cy': cy, 'fill': '#f5d642'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
+	var circle1 = draw.circle(d1).attr({'cx': cx, 'cy': cy, 'fill': '#fefab8'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
+	
+	for (let i = 1; i < 5; i++) {
+		draw.text(i + ' курс').font({ size: Math.floor(d1/15) }).move(cx-d1*0.075,cy-i*d1*0.5)
+	}
+	
+	let DrawSubject = function(r, a, name) {
+		var edge = d1 / 10
+		var x = cx + r * (d1 / 2) * Math.cos(a)
+		var y = cy + r * (d1 / 2) * Math.sin(a)
+		return draw.rect(edge,edge).x(x-edge/2).y(y-edge/2)
+	}
+	
+	let DrawLink = function(subject1, subject2) {
+		return draw.line(subject1.cx(),subject1.cy(),subject2.cx(),subject2.cy()).stroke('#000000')
+	}
+	
+	var math = DrawSubject(1, 0, 'Математика')
+	var prob = DrawSubject(1, 1, 'Теория вероятностей')
+	DrawLink(math, prob)
+	
+	math.click(function() {
+		this.fill({ color: '#f06' })
+	})
+</script>

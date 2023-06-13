@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Семантическая карта</title>
-  <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+	<title>Семантическая карта</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+	<style>
+		.active {
+			fill: #f06
+		}
+	</style>
 </head>
 <body>
 	<div id="map"></div>
@@ -41,11 +47,32 @@
 		return draw.line(subject1.cx(),subject1.cy(),subject2.cx(),subject2.cy()).stroke('#000000')
 	}
 	
-	var math = DrawSubject(1, 0, 'Математика')
-	var prob = DrawSubject(1, 1, 'Теория вероятностей')
-	DrawLink(math, prob)
+	//var math = DrawSubject(1, 0, 'Математика')
+	//var prob = DrawSubject(1, 1, 'Теория вероятностей')
+	//DrawLink(math, prob)
 	
-	math.click(function() {
+	/*math.click(function() {
 		this.fill({ color: '#f06' })
+	})*/
+	
+	fetch('./subjects.json')
+    .then((response) => response.json())
+    .then((json) => {
+		console.log(json)
+		json['Subjects'].forEach(function(subject) {
+			var subj = DrawSubject(subject['r'], subject['a'], subject['name'])
+			subj.click(function() {
+				if (this.attr('class') == 'active') {
+					this.attr('class', null)
+				} else {
+					this.attr('class', 'active')
+				}
+			})
+			subj.mouseover(function() {
+				draw.text(subject['name'])
+			})
+		})
 	})
+	//python -m http.server
+	
 </script>

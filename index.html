@@ -50,9 +50,9 @@
 		var x = cx + r * (d1 / 2) * Math.cos(a)
 		var y = cy + r * (d1 / 2) * Math.sin(a)
 		
-		var subject = draw.rect(edge,edge).attr({
-			'x': x-edge/2,
-			'y': y-edge/2,
+		var subject = draw.circle(edge).attr({
+			'cx': x,
+			'cy': y,
 			'id': id
 		})
 		var text = draw.text(name).move(x-edge/2,y-edge/2)
@@ -60,14 +60,6 @@
 	}
 	
 	let DrawLink = function(id1, id2) {
-		console.log(id1, id2)
-		console.log(document.getElementById(id1).getAttribute('x'))
-		console.log(
-			document.getElementById(id1).getAttribute('x'),
-			document.getElementById(id1).getAttribute('y'),
-			document.getElementById(id2).getAttribute('x'),
-			document.getElementById(id2).getAttribute('y')
-		)
 		return draw.line(
 			parseInt(document.getElementById(id1).getAttribute('x')) + edge/2,
 			parseInt(document.getElementById(id1).getAttribute('y')) + edge/2,
@@ -99,7 +91,7 @@
 			})
 			subj.mouseover(function(event) {
 				console.log(event)
-				draw.text(subject['name']).move(event['x'],event['y']).attr('id', subject['id'] + 'text')
+				draw.text(subject['name']).move(event['layerX'],event['layerY']).attr('id', subject['id'] + 'text')
 			})
 			subj.mouseout(function(event) {
 				document.getElementById(subject['id'] + 'text').remove()

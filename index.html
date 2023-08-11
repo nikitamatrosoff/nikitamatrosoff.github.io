@@ -28,10 +28,7 @@
 	* внедрить теги и поиск по тегам
 */
 
-	// define document width and height
 	var width = 1000, height = 1000
-
-	// create SVG document and set its size
 	var draw = SVG().addTo('#map').size(width, height)
 	draw.viewbox(0,0,width,height)
 	
@@ -100,11 +97,15 @@
 					this.attr('class', 'active')
 				}
 			})
-			subj.mouseover(function() {
-				draw.text(subject['name'])
+			subj.mouseover(function(event) {
+				console.log(event)
+				draw.text(subject['name']).move(event['x'],event['y']).attr('id', subject['id'] + 'text')
+			})
+			subj.mouseout(function(event) {
+				document.getElementById(subject['id'] + 'text').remove()
 			})
 		})
-		console.log(DrawLink('math', 'prob'))
+		//console.log(DrawLink('math', 'prob'))
 	})
 	//python -m http.server
 	

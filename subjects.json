@@ -1,16 +1,114 @@
 {
 	"Subjects": [
 		{
-			"name": "Математика",
-			"id": "math",
-			"r": 1,
-			"a": 0
+			"name": "Микроэкономика",
+			"id": "Microeconomics",
+			"r": 0.25,
+			"a": 4,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
 		},
 		{
-			"name": "Теория вероятностей",
-			"id": "prob",
-			"r": 1,
-			"a": 1
+			"name": "Макроэкономика",
+			"id": "Macroeconomics",
+			"r": 0.75,
+			"a": 3.7,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Психология",
+			"id": "Psychology",
+			"r": 0.25,
+			"a": 3,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Безопасность жизнедеятельности",
+			"id": "SafeLivingBasis",
+			"r": 0.25,
+			"a": 2.5,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Этика бизнеса и КСО",
+			"id": "BusinessEthics",
+			"r": 0.5,
+			"a": 2.5,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Проектный семинар «SWOT-анализ»",
+			"id": "SWOT",
+			"r": 0.75,
+			"a": 2.6,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Английский язык",
+			"id": "English",
+			"r": 0.5,
+			"a": 1,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "english",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Математика",
+			"id": "Math",
+			"r": 0.25,
+			"a": 0.3,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Теория вероятностей и математическая статистика",
+			"id": "Probability",
+			"r": 0.6,
+			"a": 0.6,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
+		},
+		{
+			"name": "Бизнес-статистика",
+			"id": "BusinessStatistics",
+			"r": 0.9,
+			"a": 0.6,
+			"link": "",
+			"tags": [ "" ],
+			"lang": "russian",
+			"year": 1,
+			"modules": [ 1, 2 ]
 		}
 	]
 }

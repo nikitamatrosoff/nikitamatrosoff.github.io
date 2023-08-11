@@ -28,7 +28,6 @@
 	* внедрить теги и поиск по тегам
 */
 
-
 	// define document width and height
 	var width = 1000, height = 1000
 
@@ -39,6 +38,7 @@
 	cx = width / 2
 	cy = height / 2
 	d1 = 200
+	const edge = d1 / 10
 	
 	var circle4 = draw.circle(d1*4).attr({'cx': cx, 'cy': cy, 'fill': '#ef949c'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
 	var circle3 = draw.circle(d1*3).attr({'cx': cx, 'cy': cy, 'fill': '#fe9e49'}).stroke({ color: '#000000', opacity: 1.0, width: 1 })
@@ -49,16 +49,34 @@
 		draw.text(i + ' курс').font({ size: Math.floor(d1/15) }).move(cx-d1*0.075,cy-i*d1*0.5)
 	}
 	
-	let DrawSubject = function(r, a, name) {
-		var edge = d1 / 10
+	let DrawSubject = function(r, a, name, id) {
 		var x = cx + r * (d1 / 2) * Math.cos(a)
 		var y = cy + r * (d1 / 2) * Math.sin(a)
-		draw.text(name).move(x-edge/2,y-edge/2)
-		return draw.rect(edge,edge).x(x-edge/2).y(y-edge/2)
+		
+		var subject = draw.rect(edge,edge).attr({
+			'x': x-edge/2,
+			'y': y-edge/2,
+			'id': id
+		})
+		var text = draw.text(name).move(x-edge/2,y-edge/2)
+		return subject.add(text)
 	}
 	
-	let DrawLink = function(subject1, subject2) {
-		return draw.line(subject1.cx(),subject1.cy(),subject2.cx(),subject2.cy()).stroke('#000000')
+	let DrawLink = function(id1, id2) {
+		console.log(id1, id2)
+		console.log(document.getElementById(id1).getAttribute('x'))
+		console.log(
+			document.getElementById(id1).getAttribute('x'),
+			document.getElementById(id1).getAttribute('y'),
+			document.getElementById(id2).getAttribute('x'),
+			document.getElementById(id2).getAttribute('y')
+		)
+		return draw.line(
+			parseInt(document.getElementById(id1).getAttribute('x')) + edge/2,
+			parseInt(document.getElementById(id1).getAttribute('y')) + edge/2,
+			parseInt(document.getElementById(id2).getAttribute('x')) + edge/2,
+			parseInt(document.getElementById(id2).getAttribute('y')) + edge/2)
+			.stroke('#000000')
 	}
 	
 	//var math = DrawSubject(1, 0, 'Математика')
@@ -74,7 +92,7 @@
     .then((json) => {
 		console.log(json)
 		json['Subjects'].forEach(function(subject) {
-			var subj = DrawSubject(subject['r'], subject['a'], subject['name'])
+			var subj = DrawSubject(subject['r'], subject['a'], subject['name'], subject['id'])
 			subj.click(function() {
 				if (this.attr('class') == 'active') {
 					this.attr('class', null)
@@ -86,6 +104,7 @@
 				draw.text(subject['name'])
 			})
 		})
+		console.log(DrawLink('math', 'prob'))
 	})
 	//python -m http.server
 	

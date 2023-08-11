@@ -61,20 +61,12 @@
 	
 	let DrawLink = function(id1, id2) {
 		return draw.line(
-			parseInt(document.getElementById(id1).getAttribute('x')) + edge/2,
-			parseInt(document.getElementById(id1).getAttribute('y')) + edge/2,
-			parseInt(document.getElementById(id2).getAttribute('x')) + edge/2,
-			parseInt(document.getElementById(id2).getAttribute('y')) + edge/2)
+			parseInt(document.getElementById(id1).getAttribute('cx')),
+			parseInt(document.getElementById(id1).getAttribute('cy')),
+			parseInt(document.getElementById(id2).getAttribute('cx')),
+			parseInt(document.getElementById(id2).getAttribute('cy')))
 			.stroke('#000000')
 	}
-	
-	//var math = DrawSubject(1, 0, 'Математика')
-	//var prob = DrawSubject(1, 1, 'Теория вероятностей')
-	//DrawLink(math, prob)
-	
-	/*math.click(function() {
-		this.fill({ color: '#f06' })
-	})*/
 	
 	fetch('./subjects.json')
     .then((response) => response.json())
@@ -97,7 +89,11 @@
 				document.getElementById(subject['id'] + 'text').remove()
 			})
 		})
-		//console.log(DrawLink('math', 'prob'))
+		json['Subjects'].forEach(function(subject) {
+			subject['children'].forEach(function(childId) {
+				DrawLink(subject['id'], childId)
+			})
+		})
 	})
 	//python -m http.server
 	

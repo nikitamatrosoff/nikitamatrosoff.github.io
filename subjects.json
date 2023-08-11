@@ -9,7 +9,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ "Macroeconomics" ]
 		},
 		{
 			"name": "Макроэкономика",
@@ -20,7 +21,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Психология",
@@ -31,7 +33,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Безопасность жизнедеятельности",
@@ -42,7 +45,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Этика бизнеса и КСО",
@@ -53,7 +57,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Проектный семинар «SWOT-анализ»",
@@ -64,7 +69,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Английский язык",
@@ -75,7 +81,8 @@
 			"tags": [ "" ],
 			"lang": "english",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		},
 		{
 			"name": "Математика",
@@ -86,7 +93,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ "Probability" ]
 		},
 		{
 			"name": "Теория вероятностей и математическая статистика",
@@ -97,7 +105,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ "BusinessStatistics" ]
 		},
 		{
 			"name": "Бизнес-статистика",
@@ -108,7 +117,8 @@
 			"tags": [ "" ],
 			"lang": "russian",
 			"year": 1,
-			"modules": [ 1, 2 ]
+			"modules": [ 1, 2 ],
+			"children": [ ]
 		}
 	]
 }

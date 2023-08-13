@@ -8,9 +8,31 @@
 		.active {
 			fill: #f06
 		}
+		#info {
+			background-color: #fefefe;
+			top: 0;
+			right: 0;
+			padding: 1%;
+			border: 1px solid #888;
+			width: 30%;
+			height: 100%;
+			z-index: 1;
+			position: absolute;
+		}
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
+	<div id="info">
+		<span class="close" onclick="DisplayInfo(null);">&times;</span>
+		<h1 id="infoName">Информация</h1>
+		<p>Информация о предмете</p>
+	</div>
 	<div id="map"></div>
 </body>
 </html>
@@ -68,19 +90,17 @@
 			.stroke('#000000')
 	}
 	
+	var subjects = []
+	var infoSelect = null
+	
 	fetch('./subjects.json')
     .then((response) => response.json())
     .then((json) => {
 		console.log(json)
+		subjects = json['Subjects']
 		json['Subjects'].forEach(function(subject) {
 			var subj = DrawSubject(subject['r'], subject['a'], subject['name'], subject['id'])
-			subj.click(function() {
-				if (this.attr('class') == 'active') {
-					this.attr('class', null)
-				} else {
-					this.attr('class', 'active')
-				}
-			})
+			subj.click(function() { DisplayInfo(subject['id']) })
 			subj.mouseover(function(event) {
 				console.log(event)
 				draw.text(subject['name']).move(event['layerX'],event['layerY']).attr('id', subject['id'] + 'text')
@@ -96,5 +116,31 @@
 		})
 	})
 	//python -m http.server
+	
+	let DisplayInfo = function(subjectId) {
+		var info = document.getElementById('info')
+		console.log(info)
+		console.log(subjectId)
+		if (subjectId == null || subjectId == infoSelect) {
+			if (infoSelect != null) {
+				document.getElementById(infoSelect).classList.remove('active')
+			}
+			info.style.display = 'none'
+			infoSelect = null
+			return
+		}
+		var subject = subjects.find(x => x['id'] == subjectId)
+		if (subject != undefined) {
+			if (info.style.display == 'none') {
+				info.style.display = 'block'
+			}
+			if (infoSelect != null) {
+				document.getElementById(infoSelect).classList.remove('active')
+			}
+			document.getElementById('infoName').innerHTML = subject['name']
+			document.getElementById(subjectId).classList.add('active')
+			infoSelect = subjectId
+		}
+	}
 	
 </script>

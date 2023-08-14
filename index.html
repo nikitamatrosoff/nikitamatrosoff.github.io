@@ -15,9 +15,8 @@
 			padding: 1%;
 			border: 1px solid #888;
 			width: 30%;
-			height: 100%;
-			z-index: 1;
-			position: absolute;
+			height: auto;
+			position: fixed;
 		}
 		.close {
 			color: #aaa;
@@ -25,13 +24,32 @@
 			font-size: 28px;
 			font-weight: bold;
 		}
+		.tag {
+			background-color: gray;
+			color: #ffffff;
+			border-radius: 4px;
+			font-size: 16px;
+			padding: 4px;
+			margin: 2px;
+			display: inline-block;
+		}
+		ul#infoChildren > li {
+			cursor: pointer;
+			color: blue;
+			text-decoration: underline;
+		}
 	</style>
 </head>
 <body>
 	<div id="info">
 		<span class="close" onclick="DisplayInfo(null);">&times;</span>
-		<h1 id="infoName">Информация</h1>
-		<p>Информация о предмете</p>
+		<h2 id="infoName">Информация</h1>
+		<p><b>Когда читается:</b></p>
+		<p id="infoYear"></p>
+		<p><b>Теги:</b></p>
+		<p id="infoTags"></p>
+		<p><b>Зависимые предметы:</b></p>
+		<ul id="infoChildren"></ul>
 	</div>
 	<div id="map"></div>
 </body>
@@ -103,7 +121,7 @@
 			subj.click(function() { DisplayInfo(subject['id']) })
 			subj.mouseover(function(event) {
 				console.log(event)
-				draw.text(subject['name']).move(event['layerX'],event['layerY']).attr('id', subject['id'] + 'text')
+				draw.text(subject['name']).move(event['layerX'],event['layerY']).attr({ 'id': subject['id'] + 'text', 'stroke': '#ffffff', 'stroke-width': '1px', 'stroke-linecap': 'butt', 'stroke-linejoin': 'miter', 'paint-order': 'stroke' })
 			})
 			subj.mouseout(function(event) {
 				document.getElementById(subject['id'] + 'text').remove()
@@ -138,6 +156,9 @@
 				document.getElementById(infoSelect).classList.remove('active')
 			}
 			document.getElementById('infoName').innerHTML = subject['name']
+			document.getElementById('infoYear').innerHTML = subject['year'] + ' курс, ' + subject['modules'].join('-') + ((subject['modules'].length > 1) ? ' модули' : ' модуль')
+			document.getElementById('infoTags').innerHTML = subject['tags'].map((x) => '<span class="tag">' + x + '</span>').join('')
+			document.getElementById('infoChildren').innerHTML = subject['children'].map((x) => '<li onclick="DisplayInfo(&quot;' + x + '&quot;)">' + subjects.find(y => y['id'] == x)['name'] + '</li>')
 			document.getElementById(subjectId).classList.add('active')
 			infoSelect = subjectId
 		}

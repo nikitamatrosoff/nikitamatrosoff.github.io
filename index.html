@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Семантическая карта</title>
+	<title>Бета-версия семантической карты</title>
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
 	<style>
@@ -121,7 +121,7 @@
 			subj.click(function() { DisplayInfo(subject['id']) })
 			subj.mouseover(function(event) {
 				console.log(event)
-				draw.text(subject['name']).move(event['layerX'],event['layerY']).attr({ 'id': subject['id'] + 'text', 'stroke': '#ffffff', 'stroke-width': '1px', 'stroke-linecap': 'butt', 'stroke-linejoin': 'miter', 'paint-order': 'stroke' })
+				draw.text(subject['name']).move(event['clientX'],event['clientY']).attr({ 'id': subject['id'] + 'text', 'stroke': '#ffffff', 'stroke-width': '1px', 'stroke-linecap': 'butt', 'stroke-linejoin': 'miter', 'paint-order': 'stroke' })
 			})
 			subj.mouseout(function(event) {
 				document.getElementById(subject['id'] + 'text').remove()
